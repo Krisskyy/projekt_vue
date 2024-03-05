@@ -12,7 +12,7 @@
         },
         {
             image: './icons/step-three-icon.svg',
-            title: 'Wylosujemy 10 szczęśliwców',
+            title: 'Wylosujemy 10 szczęśliwców'
         }
     ]);
 </script>

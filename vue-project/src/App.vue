@@ -4,10 +4,11 @@ import  ButtonComponent from './components/ButtonComponent.vue';
 import  CardComponent   from './components/CardComponent.vue';
 import  BoxComponent    from './components/BoxComponent.vue';
 import  FooterComponent from './components/FooterComponent.vue';
+import QuestionModalComponent from './components/QuestionModalComponent.vue';
 </script>
 
 <template>
-  <div class="container">
+  <div class="container d-none">
     <div class="first-page">
       <HeaderComponent />
       <div class="main-area padding">
@@ -42,9 +43,55 @@ import  FooterComponent from './components/FooterComponent.vue';
             </div>
             <ButtonComponent/>
       </div>
-
       <FooterComponent/>
   </div>
+
+  <div class="container-modal">
+        <div class="logo modal-logo">
+            <img src="/icons/logo.svg" alt="Logo">
+        </div>
+
+        <form action="" method="post" id="survey-form">
+            <QuestionModalComponent/>
+
+            <div class="modal-content score d-none">
+                <h2>Wiosna nadchodzi - konkurs Mediaflex</h2>
+                <h3>Dziękujemy za grę!</h3>
+                <h4>Twój wynik: &nbsp <span class="final-result"> 300/500</span></h4>
+                <p class="par">Aby grać o nagrody - zaakceptuj zgody i napisz swój wynik</p>
+                <div class="images">
+                    <img src="./media/prize-one.png" alt="Prize one icon">
+                    <img src="./media/prize-two.png" alt="Prize two icon">
+                    <img src="./media/prize-three.png" alt="Price three icon">
+
+                    <div class="score-round"></div>
+                </div>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" name="all" id="all" class="check-all"></td> <td><label for="all"> Zaznacz wszystkie zgody</label></td>   
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="regulations" id="rules" class="check" required></td> <td><label for="rules"> * Akceptuję <a href="#">regulamin konkursu</a></label></td>   
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="data" id="data" class="check"></td> <td><label for="data"> Zgoda na przetwarzanie danych osobowych dla celów konkursu</label></td>   
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="dataTwo" id="dataTwo" class="check" required></td> <td><label for="dataTwo"> * Wyrażam zgodę na przetwarzanie podanych przeze mnie moich danych osobowych w zakresie imię, nazwisko, adres e-mail, numer PWZ, numer telefonu przez Administratora w celu organizacji i realizacji Konkursu.</label></td>   
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Klauzula informacyjna RODO <a href="#">czytaj więcej</a></p>
+                <p>* Pola obowiązkowe są oznaczone gwiazdką</p>
+
+                <div class="next-page">
+                    <button class="end-button" type="submit"><div><p>Zakończ Quiz</p></div></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </template>
 
 <style scoped>
@@ -140,5 +187,20 @@ import  FooterComponent from './components/FooterComponent.vue';
 .boxes{
     display: flex;
     justify-content: space-between;
+}
+
+
+/* Modale */
+
+.container-modal{
+    background-color: rgba(0, 0, 0, 0.4);
+    position: relative;
+
+    width: 1920px;
+    height: 100vh;
+}
+
+.modal-logo{
+    padding: 40px 0 0 303px;
 }
 </style>
