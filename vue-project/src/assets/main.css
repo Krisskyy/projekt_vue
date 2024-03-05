@@ -4,13 +4,13 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-  }
+    }
 
   body{
     font-family: 'Poppins';
     max-width: 1920px;
     max-height: 2876px;
-}
+    }
 
     .padding{
         padding-left: 303px;
@@ -25,3 +25,10 @@
         border: none;
         background: none;
     }
+
+
+    .second-page input, .third-page input{
+      display: flex;
+      margin: auto;
+      margin-top: 50px;
+  }
