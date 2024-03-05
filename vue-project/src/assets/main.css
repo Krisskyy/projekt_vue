@@ -32,3 +32,34 @@
       margin: auto;
       margin-top: 50px;
   }
+
+
+  /* klasy js */
+
+  .border-two{
+    border: 2px solid #EAEAEA;
+  }
+
+  .border-click{
+    border: 3px solid #E1B9B5;
+  }
+
+  .border-answer-color{
+    color: #543E3C;
+  }
+
+  .alert-one{
+    visibility: hidden;
+    color: red;
+    width: 33%;
+    text-align: center;
+  }
+
+  .invisible{
+    visibility: hidden;
+    width: 33%;
+  }
+
+  .d-none{
+    display: none;
+}
