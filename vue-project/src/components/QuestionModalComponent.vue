@@ -8,27 +8,30 @@
             answerA: '2007',
             answerB: '2008',
             answerC: '2009',
-            status: 'one'
+            status: 'one',
+            selectedAnswer: null
         },
         {
             question: 'Firmową wartością nie jest:',
             answerA: 'Jakość',
             answerB: 'Rozsądek',
             answerC: 'Komunikacja',
-            status: 'two'
+            status: 'two',
+            selectedAnswer: null
         },
         {
             question: 'Biuro Mediaflex znajduje się w:',
             answerA: 'Krakowie',
             answerB: 'Szczecinie',
             answerC: 'Rzeszowie',
-            status: 'three'
+            status: 'three',
+            selectedAnswer: null
         }
     ]);
 
-    const choice = () => ({
-
-    });
+    const selectAnswer = (answer, modal) => {
+        modal.selectedAnswer = answer;
+    };
 </script>
 
 
@@ -39,9 +42,22 @@
         <h4>{{modal.question}}</h4>
 
         <div class="answers">
-                 <div class="answer"><img class="image_answer" src="/icons/flower-icon.svg" alt="Flower Icon"> <p>A</p> <input class="border-two input-color" type="button" :value="modal.answerA"></div>
-                 <div class="answer"><img class="image_answer" src="/icons/flower-icon.svg" alt="Flower Icon"> <p>B</p> <input class="border-two input-color" type="button" :value="modal.answerB"></div>
-                 <div class="answer"><img class="image_answer" src="/icons/flower-icon.svg" alt="Flower Icon"> <p>C</p> <input class="border-two input-color" type="button" :value="modal.answerC"></div>
+
+                 <div class="answer">
+                     <img class="image_answer"  :src="modal.selectedAnswer === 'A' ? '/icons/flower-icon-color.svg' : '/icons/flower-icon.svg'" alt="Flower Icon" > 
+                     <p>A</p>
+                     <input class="border-two input-color" type="button" :value="modal.answerA" :class="{ 'border-click': modal.selectedAnswer === 'A' }" @click="selectAnswer('A', modal)">
+                 </div>
+                 <div class="answer">
+                     <img class="image_answer"  :src="modal.selectedAnswer === 'B' ? '/icons/flower-icon-color.svg' : '/icons/flower-icon.svg'" alt="Flower Icon">
+                     <p>B</p>
+                     <input class="border-two input-color" type="button" :value="modal.answerB" :class="{ 'border-click': modal.selectedAnswer === 'B' }" @click="selectAnswer('B', modal)">
+                 </div>
+                 <div class="answer">
+                     <img class="image_answer"  :src="modal.selectedAnswer === 'C' ? '/icons/flower-icon-color.svg' : '/icons/flower-icon.svg'" alt="Flower Icon">
+                     <p>C</p>
+                     <input class="border-two input-color" type="button" :value="modal.answerC" :class="{ 'border-click': modal.selectedAnswer === 'C' }" @click="selectAnswer('C', modal)">
+                 </div> 
 
             <div class="buttons">
                 <div class="last-question" :class="{'invisible': modal.status == 'one'}">
@@ -58,6 +74,7 @@
 </template>
     
 <style scoped>
+
 .modal-content{
     position: absolute;
     z-index: 1;
