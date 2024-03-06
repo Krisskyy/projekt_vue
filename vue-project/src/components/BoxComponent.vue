@@ -1,20 +1,5 @@
 <script setup>
-    import { ref } from 'vue';
-
-    const boxes = ref([
-        {
-            image: './icons/step-one-icon.svg',
-            title: 'Wypełnij mini quiz o firmie'
-        },
-        {
-            image: './icons/step-two-icon.svg',
-            title: 'Zostaw nam namiary do siebie!'
-        },
-        {
-            image: './icons/step-three-icon.svg',
-            title: 'Wylosujemy 10 szczęśliwców'
-        }
-    ]);
+const { boxes } = defineProps(['boxes']);
 </script>
 
 <template>
