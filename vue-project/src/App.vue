@@ -5,7 +5,69 @@ import  CardComponent   from './components/CardComponent.vue';
 import  BoxComponent    from './components/BoxComponent.vue';
 import  FooterComponent from './components/FooterComponent.vue';
 import QuestionModalComponent from './components/QuestionModalComponent.vue';
+import NpsSurveyComponent from './components/NpsSurveyComponent.vue';
 import { ref } from 'vue';
+
+const cards = ref([
+    {
+        image: './icons/prize-one.png',
+        title: 'Kubek termiczny',
+        description: 'kapuczina lub herbatka przetrwa w ciepełku wiele godzin'
+    },
+    {
+        image: './icons/prize-two.png',
+        title: 'Zestaw papierniczy',
+        description: 'gdy zabraknie długopisów czy zeszytu na szybkie notatki'
+    },
+    {
+        image: './icons/prize-three.png',
+        title: 'Zapas słodyczy',
+        description: 'na ciężkie czasy, kiedy cukier drastycznie spada'
+    }
+]);
+const boxes = ref([
+    {
+        image: './icons/step-one-icon.svg',
+        title: 'Wypełnij mini quiz o firmie'
+    },
+    {
+        image: './icons/step-two-icon.svg',
+        title: 'Zostaw nam namiary do siebie!'
+    },
+    {
+        image: './icons/step-three-icon.svg',
+        title: 'Wylosujemy 10 szczęśliwców',
+    }
+]);
+const modals = ref([
+        {
+            question: 'W którym roku powstał Mediaflex?',
+            answerA: '2007',
+            answerB: '2008',
+            answerC: '2009',
+            CorrectAnswer: 'C',
+            status: 'active',
+            selectedAnswer: null,
+        },
+        {
+            question: 'Firmową wartością nie jest:',
+            answerA: 'Jakość',
+            answerB: 'Rozsądek',
+            answerC: 'Komunikacja',
+            CorrectAnswer: 'B',
+            status: '',
+            selectedAnswer: null
+        },
+        {
+            question: 'Biuro Mediaflex znajduje się w:',
+            answerA: 'Krakowie',
+            answerB: 'Szczecinie',
+            answerC: 'Rzeszowie',
+            CorrectAnswer: 'A',
+            status: '',
+            selectedAnswer: null
+        }
+    ]);
 
 const isVisible = ref(true);
 const toggleContainers = () => {
@@ -36,7 +98,7 @@ const toggleContainers = () => {
       <div class="second-page padding">
             <h2 id="awards" class="heading">Co możesz wygrać?</h2>
             <div class="cards">
-              <CardComponent/>
+              <CardComponent :cards="cards"/>
             </div>
               <ButtonComponent :toggleContainers="toggleContainers"/>
             <a href="#">Regulamin konkursu</a>
@@ -45,7 +107,7 @@ const toggleContainers = () => {
       <div class="third-page padding">
             <h2 id="steps">Do Nagrody Dzielą Cię 3 Kroki!</h2>
             <div class="boxes">
-              <BoxComponent/>
+              <BoxComponent :boxes="boxes"/>
             </div>
             <ButtonComponent :toggleContainers="toggleContainers"/>
       </div>
@@ -56,47 +118,8 @@ const toggleContainers = () => {
         <div class="logo modal-logo">
             <img src="/icons/logo.svg" alt="Logo">
         </div>
-
-        <form action="" method="post" id="survey-form">
-            <QuestionModalComponent/>
-
-            <div class="modal-content score d-none">
-                <h2>Wiosna nadchodzi - konkurs Mediaflex</h2>
-                <h3>Dziękujemy za grę!</h3>
-                <h4>Twój wynik: &nbsp <span class="final-result"> 300/500</span></h4>
-                <p class="par">Aby grać o nagrody - zaakceptuj zgody i napisz swój wynik</p>
-                <div class="images">
-                    <img src="./media/prize-one.png" alt="Prize one icon">
-                    <img src="./media/prize-two.png" alt="Prize two icon">
-                    <img src="./media/prize-three.png" alt="Price three icon">
-
-                    <div class="score-round"></div>
-                </div>
-
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" name="all" id="all" class="check-all"></td> <td><label for="all"> Zaznacz wszystkie zgody</label></td>   
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="regulations" id="rules" class="check" required></td> <td><label for="rules"> * Akceptuję <a href="#">regulamin konkursu</a></label></td>   
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="data" id="data" class="check"></td> <td><label for="data"> Zgoda na przetwarzanie danych osobowych dla celów konkursu</label></td>   
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="dataTwo" id="dataTwo" class="check" required></td> <td><label for="dataTwo"> * Wyrażam zgodę na przetwarzanie podanych przeze mnie moich danych osobowych w zakresie imię, nazwisko, adres e-mail, numer PWZ, numer telefonu przez Administratora w celu organizacji i realizacji Konkursu.</label></td>   
-                        </tr>
-                    </tbody>
-                </table>
-                <p>Klauzula informacyjna RODO <a href="#">czytaj więcej</a></p>
-                <p>* Pola obowiązkowe są oznaczone gwiazdką</p>
-
-                <div class="next-page">
-                    <button class="end-button" type="submit"><div><p>Zakończ Quiz</p></div></button>
-                </div>
-            </div>
-        </form>
+        <QuestionModalComponent :modals="modals"/>
+        <NpsSurveyComponent />
     </div>
 </template>
 
