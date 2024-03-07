@@ -48,12 +48,12 @@ const checkboxes = ref([
 
     const isChcecked = ref(false);
     watchEffect(() => {
-        if (rules.value == true  && dataTwo.value == true) {
-            isChcecked.value = !isChcecked.value;
-        }else if (checkedAll.value == false) {
+    if (rules.value  && dataTwo.value) {
+        isChcecked.value = !isChcecked.value;
+    } else if (!checkedAll.value) {
         isChcecked.value = false;
     }
-    });
+});
 
     function handleClick(event) {
     if (isChcecked.value) {
