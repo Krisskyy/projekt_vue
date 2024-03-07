@@ -5,7 +5,6 @@ import  CardComponent   from './components/CardComponent.vue';
 import  BoxComponent    from './components/BoxComponent.vue';
 import  FooterComponent from './components/FooterComponent.vue';
 import QuestionModalComponent from './components/QuestionModalComponent.vue';
-import NpsSurveyComponent from './components/NpsSurveyComponent.vue';
 import { ref } from 'vue';
 
 const cards = ref([
@@ -119,7 +118,6 @@ const toggleContainers = () => {
             <img src="/icons/logo.svg" alt="Logo">
         </div>
         <QuestionModalComponent :modals="modals"/>
-        <NpsSurveyComponent />
     </div>
 </template>
 

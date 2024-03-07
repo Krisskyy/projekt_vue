@@ -2,6 +2,7 @@
     import { ref } from 'vue';
     import ScoreModalComponent from './ScoreModalComponent.vue';
     import InputComponent from './InputComponent.vue';
+    import NpsSurveyComponent from './NpsSurveyComponent.vue';
     const { modals } = defineProps(['modals']);
 
     const score = ref(0);
@@ -48,10 +49,15 @@
         modals[modalIndex].showAlert = true;
     }
     }
+
+    const NpsInvisible = ref(true);
+    const toggleWindow = () => {
+        NpsInvisible.value = !NpsInvisible.value;
+    };
 </script>
 
 <template>
-    <form action="" method="post" id="survey-form">
+    <form action="" method="post" id="survey-form" v-show="NpsInvisible">
             <div class="modal-content" v-for="(modal, index) in modals" :key="index" v-show="modal.status === 'active'">
                 <h2>Wiosna nadchodzi - konkurs Mediaflex</h2>
                 <h3 class="h3-margin">Pytanie {{index + 1}}/3</h3>
@@ -71,13 +77,14 @@
                     </div>
                     <p class="alert-one" v-show="modal.showAlert">Prosimy zaznaczyć odpowiedź</p>
                     <div class="next-question" :class="{'next-question-one': index === modals.length - 1}">
-                        <InputComponent v-if="modal.status === 'active' && index === modals.length - 1"  @click="goToNextModal(index)" />
+                        <InputComponent  v-if="modal.status === 'active' && index === modals.length - 1" @click="goToNextModal(index)" />
                         <button class="submit" type="button" v-else @click="goToNextQuestion(index)"><p class="paragraph">Następne Pytanie</p> <img src="/icons/next-icon.svg" alt="Next Icon"></button>
                     </div>
                 </div>
             </div>
-        <ScoreModalComponent v-show="InputStatus" :score="score"/>
+        <ScoreModalComponent v-show="InputStatus" :score="score" :NpsInvisible="NpsInvisible" :toggleWindow="toggleWindow"/>
     </form>
+    <NpsSurveyComponent v-show="!NpsInvisible"/>
 </template>
 
     
