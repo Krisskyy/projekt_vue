@@ -1,7 +1,7 @@
 <script setup>
 import InputComponent from './InputComponent.vue'
 import { ref, watchEffect } from 'vue'
-const { score } = defineProps(['score']);
+const { score, NpsInvisible, toggleWindow } = defineProps(['score', 'NpsInvisible', 'toggleWindow']);
 const checkedAll = ref(false);
 const rules = ref(false);
 const data = ref(false);
@@ -29,7 +29,7 @@ const checkboxes = ref([
          id: "rules",
          v: rules,
          required: true,
-         label: '* Akceptuję <a href="#">regulamin konkursu</a>'
+         label: '* Akceptuję <a style="color: #E1B9B5;" href="#">regulamin konkursu</a>'
     },
     {
          id: 'data',
@@ -43,12 +43,30 @@ const checkboxes = ref([
          required: true,
          label: '* Wyrażam zgodę na przetwarzanie podanych przeze mnie moich danych osobowych w zakresie imię, nazwisko, adres e-mail, numer PWZ, numer telefonu przez Administratora w celu organizacji i realizacji Konkursu.'
     }
-]);
+    ]);
+
+
+    const isChcecked = ref(false);
+    watchEffect(() => {
+        if (rules.value == true  && dataTwo.value == true) {
+            isChcecked.value = !isChcecked.value;
+        }else if (checkedAll.value == false) {
+        isChcecked.value = false;
+    }
+    });
+
+    function handleClick(event) {
+    if (isChcecked.value) {
+        event.preventDefault();
+        toggleWindow();
+    }
+}
+
 </script>
 
 
 <template>
-    <div class="modal-content score">
+    <div class="modal-content score" >
         <h2>Wiosna nadchodzi - konkurs Mediaflex</h2>
         <h3>Dziękujemy za grę!</h3>
         <h4>Twój wynik: &nbsp <span class="final-result"> {{ score }}/3</span></h4>
@@ -73,9 +91,13 @@ const checkboxes = ref([
             <p>* Pola obowiązkowe są oznaczone gwiazdką</p>
 
             <div class="next-page">
-                <InputComponent class="end-button" />                
+                <InputComponent class="end-button" @click="handleClick"/>
+              
             </div>
     </div>
+    
+
+
 </template>
 
 
